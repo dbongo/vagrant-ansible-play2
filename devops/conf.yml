@@ -1,2 +1,3 @@
 ---
-scala_version: 2.10.0
+scala_version: 2.10.3
+play_version: 2.1.2

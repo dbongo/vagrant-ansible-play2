@@ -26,12 +26,12 @@
 # =============================================
 
 - name: get scala
-  command: wget http://www.scala-lang.org/downloads/distrib/files/scala-${scala_version}.tgz
+  command: wget http://www.scala-lang.org/files/archive/scala-{{ scala_version }}.tgz
 
 - name: tar
   command: tar zxf scala-${scala_version}.tgz
 
-- name: move scala to local
+- name: move download to proper directory
   command: sudo mv scala-${scala_version} /usr/share/scala
   ignore_errors: yes
 
@@ -58,19 +58,20 @@
   command: sudo ln -s /usr/share/scala/bin/scalap /usr/bin/scalap
   ignore_errors: yes
   
+# Install Play2
 # =============================================
 
 - name: Install Unzip
   action: apt pkg=unzip state=latest install_recommends=yes
      
 - name: download
-  command: sudo wget http://downloads.typesafe.com/play/2.1.2/play-2.1.2.zip
+  command: sudo wget http://downloads.typesafe.com/play/{{ play_version }}/play-{{ play_version }}.zip
   
 - name: unzip
-  command: sudo unsizp play-2.1.2.zip 
+  command: sudo unzip play-{{ play_version }}.zip 
   
 - name: clean up
-  command: sudo rm -rf play-2.1.2.zip
+  command: sudo rm -rf play-{{ play_version }}.zip
   
 - name: move to local
-  command: sudo mv play-2.1.2.zip /usr/local/play
+  command: sudo mv play-{{ play_version }}.zip /usr/local/play
