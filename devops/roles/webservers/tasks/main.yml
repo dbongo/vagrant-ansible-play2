@@ -11,7 +11,7 @@
   sudo: true
 
 - name: Install essential packages
-  apt: pkg=$item
+  apt: pkg={{ item }}
   with_items:
     - build-essential
     - python-dev
