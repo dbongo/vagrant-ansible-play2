@@ -29,10 +29,10 @@
   command: wget http://www.scala-lang.org/files/archive/scala-{{ scala_version }}.tgz
 
 - name: tar
-  command: tar zxf scala-${scala_version}.tgz
+  command: tar zxf scala-{{ scala_version }}.tgz
 
 - name: move download to proper directory
-  command: sudo mv scala-${scala_version} /usr/share/scala
+  command: sudo mv scala-{{ scala_version }} /usr/share/scala
   ignore_errors: yes
 
 # Symbolic linking
