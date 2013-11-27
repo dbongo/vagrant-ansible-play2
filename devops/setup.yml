@@ -1,9 +1,9 @@
 ---
-- hosts: webservers
+- hosts: vagrant
   user: vagrant
   sudo: yes
   gather_facts: no
   vars_files:
     - conf.yml
   roles:
-    - webservers
+    - play2

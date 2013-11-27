@@ -1,0 +1,35 @@
+- name: update cache 
+  apt: update_cache=yes
+  sudo: true
+
+- name: install essential packages
+  apt: pkg={{ item }}
+  with_items:
+    - build-essential
+    - python-dev
+    - python-setuptools
+    - git
+    - unzip
+    - curl
+    # Java
+    - openjdk-7-jre
+    - openjdk-7-jdk
+
+- name: download play2
+  command: wget http://downloads.typesafe.com/play/{{ play_version }}/play-{{ play_version }}.zip
+
+- name: unzip application
+  command: unzip play-{{ play_version }}.zip
+  
+- name: remove old zip folder
+  command: sudo rm -rf play-{{ play_version }}.zip
+  
+- name: move play
+  command: sudo mv play-{{ play_version }} /opt
+  
+- name: linking play to opt
+  command: sudo ln -s /opt/play-{{ play_version }} /opt/play
+  
+- name: linking play to local
+  command: sudo ln -s /opt/play/play /usr/local/bin/play
+
